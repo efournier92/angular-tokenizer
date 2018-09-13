@@ -21,8 +21,8 @@
         <label class="sr-only" for="inlineFormInput">Name</label>
         <tags-input ng-model="selectedPromoCodes" add-from-autocomplete-only="true" 
                     allow-leftover-text="false" display-property="vanityCode"
-                    text="text" ng-blur="text=''" placeholder="Type to add promo codes"
-                    on-tag-added="promoCodesChanged()" on-tag-removed="promoCodesChanged()">
+                    text="text" ng-blur="text=''" placeholder="{{isViewMode() ? ' ' : 'Type to add promo codes'}}"
+                    on-tag-added="promoCodesChanged()" on-tag-removed="promoCodesChanged()" ng-disabled="isViewMode()">
           <auto-complete min-length="1" highlight-matched-text="false" 
                          source="searchCodes($query)"></auto-complete>
         </tags-input>
