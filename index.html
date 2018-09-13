@@ -1,51 +1,36 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="promoCodes">
 
-  <head>
-    <meta charset="utf-8" />
-    <title>AngularJS Plunker</title>
-    <script>document.write('<base href="' + document.location + '" />');</script>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
-    <script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
-    <script src="app.js"></script>
-  </head>
-
-  <body ng-controller="MainCtrl">
-      <form>
-          <div class="form-row align-items-center">
-            <div class="col-auto">
-              <label class="sr-only" for="inlineFormInput">Name</label>
-              <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Jane Doe">
-            </div>
-            <div class="col-auto">
-              <label class="sr-only" for="inlineFormInputGroup">Username</label>
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">@</div>
-                </div>
-                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
-              </div>
-            </div>
-            <div class="col-auto">
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="autoSizingCheck">
-                <label class="form-check-label" for="autoSizingCheck">
-                  Remember me
-                </label>
-              </div>
-            </div>
-            <div class="col-auto">
-              <button type="submit" class="btn btn-primary mb-2">Submit</button>
-            </div>
-          </div>
-        </form>
-    <!-- <tags-input ng-model="selectedPromoCodes" add-from-autocomplete-only="true" allow-leftover-text="false" display-property="vanityCode" text="text" ng-blur="text=''">
-      <auto-complete min-length="1" highlight-matched-text="false" source="searchCodes($query)"></auto-complete>
-    </tags-input> -->
+<head>
+  <meta charset="utf-8" />
+  <title>PromoCodes</title>
+  <script>document.write('<base href="' + document.location + '" />');</script>
+  <link rel="stylesheet" href="promoCodesStyle.css" />
+  <link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+  <script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   
-    <p>Input value: {{ input }}</p>
-  </body>
+  <script src="promoCodes.js"></script>
+</head>
+
+<body ng-controller="promoCodesCtrl">
+    <div class="form-row align-items-center">
+      <div class="col-10">
+        <label class="sr-only" for="inlineFormInput">Name</label>
+        <tags-input ng-model="selectedPromoCodes" add-from-autocomplete-only="true" 
+                    allow-leftover-text="false" display-property="vanityCode"
+                    text="text" ng-blur="text=''" placeholder="Type to add promo codes"
+                    on-tag-added="promoCodesChanged()" on-tag-removed="promoCodesChanged()">
+          <auto-complete min-length="1" highlight-matched-text="false" 
+                         source="searchCodes($query)"></auto-complete>
+        </tags-input>
+      </div>    
+      <div class="col-2" style="margin-top: 10px">
+        <button class="btn btn-primary mb-2" ng-click="saveCodes()">Save</button>
+      </div>
+    </div>
+</body>
 
 </html>
